@@ -1,5 +1,4 @@
-import pickle
-from sklearn.metrics.pairwise import cosine_similarity
+
 from fastapi import  HTTPException
 
 

@@ -1,21 +1,10 @@
-# import pickle
-# from fastapi import FastAPI, HTTPException
-# from pydantic import BaseModel
-# from sklearn.metrics.pairwise import cosine_similarity
-# from helper import get_recommendations
-# import uvicorn
-# import os
-# from pyngrok import ngrok  # Import ngrok from pyngrok
-
 import pickle
-import pandas as pd
 from sklearn.metrics.pairwise import cosine_similarity
 from helper import get_recommendations
 from fastapi import FastAPI, HTTPException
 from pydantic import BaseModel
 import uvicorn
 from pyngrok import ngrok
-import os
 
 # Load your data into df (example with pickle)
 with open('tfidf_vectorizer.pkl', 'rb') as f:
@@ -29,8 +18,6 @@ with open('data.pkl', 'rb') as f:
 
 # Compute cosine similarity matrix
 cosine_sim = cosine_similarity(tfidf_matrix, tfidf_matrix)
-
-# Assuming other necessary imports and setup for FastAPI
 
 # FastAPI app
 app = FastAPI()
