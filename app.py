@@ -5,6 +5,12 @@ import uvicorn
 import pandas as pd
 from sklearn.metrics.pairwise import cosine_similarity
 from helper import get_recommendations
+from dotenv import load_dotenv
+from pyngrok import ngrok
+import os
+
+# Load the environment variables
+load_dotenv()
 
 # Load the pre-saved TF-IDF vectorizer, TF-IDF matrix, and DataFrame
 with open('tfidf_vectorizer.pkl', 'rb') as f:
@@ -41,4 +47,8 @@ def recommend_places(request: PlaceRequest):
 
 
 if __name__ == "__main__":
+    NGROK_AUTH = os.getenv("NGROK_AUTH")
+    ngrok.set_auth_token(NGROK_AUTH)
+    public_url = ngrok.connect(8000)
+    print("Public URL:", public_url)
     uvicorn.run(app, host='localhost', port=8000)
